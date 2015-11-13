@@ -1,0 +1,39 @@
+
+    MDisk is not like other disk benchmarks -- its primary
+purpose is not to measure basic disk subsystem performance. 
+MDisk is an attempt at quantifying two parameters not measured
+by any other disk benchmark that I have seen: the amount of cpu
+time consumed by disk I/O; and the I/O performance of two drives
+at the same time, particularly when using two physical hard
+drives.
+
+    Cpu usage is unimportant under Dos, as Dos will not allow
+anything else to use the cpu during disk access.  Under a
+multitasking os such as OS/2, this time can be used by other
+processes.  The net effect is overall cpu performance equivalent
+to what one would get under Dos with a somewhat faster cpu.
+    OS/2 does not provide a direct way to measure how much cpu
+time is used by a particular process/thread.  MDisk makes a
+rough measurement by running a thread at idle priority which
+basically counts how many times it loops during each test.  This
+thread is run once by itself to obtain a baseline figure, and
+again during each disk test.  The results of each run during
+disk I/O is then used to caculate a percentage of available cpu
+time relative to no disk I/O conditions.
+
+    The performance of simultaneous I/O to two drives is
+intended to show the benefit of advanced disk subsystems. 
+Setups with multiple SCSI drives should provide some interesting
+results; those with multiple ST506 type drives spread across
+multiple controllers may also show benefits.
+    The disk I/O thread is based on IOSTONE.  This benchmark
+uses a set of test files that total about 1.5 MB, resulting in
+test results that are heavily influenced by the amount of disk
+caching.  Numbers obtained with cache sizes larger than the test
+files will not bear any resemblence to the performance one would
+get when using files significantly larger than the cache.
+
+
+    Have fun!!! 
+
+
